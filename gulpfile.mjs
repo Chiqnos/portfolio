@@ -55,7 +55,7 @@ const remoteDestination = '/public_html/chiqnos.com/wp-content/themes/portfolio'
 const deploy = () => {
   const conn = ftp.create(ftpConnection);
 
-  return gulp.src('portfolio/portfolio_theme/**', { base: 'portfolio/portfolio_theme', buffer: false })
+  return gulp.src('./portfolio_theme/**', { base: './portfolio_theme', buffer: false })
     .pipe(conn.newer(remoteDestination)) // サーバー上のファイルより新しいものだけアップロード
     .pipe(conn.dest(remoteDestination));
 };
