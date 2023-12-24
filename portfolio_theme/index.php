@@ -13,7 +13,7 @@ include_once($current_path . '/assets/inc/header.php');
 
 <!-- コンテンツここから -->
 <main class="mainContents page_<?php echo $page_slig; ?>">
-  <p>ここにコンテンツがはいります。</p>
+
 </main>
 
 
