@@ -14,7 +14,6 @@ include_once($current_path . '/assets/inc/header.php');
 <!-- コンテンツここから -->
 <main class="mainContents page_<?php echo $page_slig; ?>">
   <p>ここにコンテンツがはいります。</p>
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, tempora? Explicabo, similique? Fugit, in quos repudiandae necessitatibus delectus optio dolores expedita consectetur repellendus quidem facere rerum itaque placeat eveniet enim.</p>
 </main>
 
 
