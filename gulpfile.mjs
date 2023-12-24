@@ -18,27 +18,27 @@ const ftpPassword = process.env.FTP_PASSWORD;
 const sass = gulpSass(sassLibrary);
 
 const compileSass = () => {
-  return gulp.src('portfolio/assets/scss/**/*.scss')
+  return gulp.src(['portfolio_theme/assets/scss/**/*.scss', '!portfolio_theme/assets/scss/**/_*.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
       cascade: false
     }))
     .pipe(cleanCSS())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('assets/css'))
+    .pipe(gulp.dest('portfolio_theme/assets/css'))
 };
 
 const images = () => {
-  return gulp.src('assets/img/**/*')
+  return gulp.src('portfolio_theme/assets/img/**/*')
     .pipe(imagemin())
-    .pipe(gulp.dest('assets/img'));
+    .pipe(gulp.dest('portfolio_theme/assets/img'));
 };
 
 const scripts = () => {
-  return gulp.src('assets/js/**/*.js')
+  return gulp.src(['portfolio_theme/assets/js/**/*.js', '!portfolio_theme/assets/js/jquery.min.js']) // jquery.min.jsを除外
     .pipe(concat('all.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('assets/js'))
+    .pipe(gulp.dest('portfolio_theme/assets/js'))
 };
 
 // FTP接続設定
@@ -62,13 +62,15 @@ const deploy = () => {
 
 
 const watchFiles = () => {
-  gulp.watch('assets/scss/**/*.scss', compileSass);
-  gulp.watch('assets/img/**/*', images);
-  gulp.watch('assets/js/**/*.js', scripts);
+  gulp.watch('portfolio_theme/assets/scss/**/*.scss', gulp.series(compileSass, deploy));
+  gulp.watch('portfolio_theme/assets/img/**/*', gulp.series(images, deploy));
+  gulp.watch('portfolio_theme/assets/js/**/*.js', gulp.series(scripts, deploy));
+  gulp.watch('portfolio_theme/**/*.php', deploy);
 };
 
 // 統合されたwatchタスク
 const watch = gulp.parallel(watchFiles);
+
 
 export {
   compileSass as sass,
