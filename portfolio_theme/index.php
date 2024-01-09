@@ -13,7 +13,9 @@ include_once($current_path . '/assets/inc/header.php');
 
 <!-- コンテンツここから -->
 <main class="mainContents page_<?php echo $page_slig; ?>">
-
+  <p class="px">16px</p>
+  <p class="rem">16rem</p>
+  <p class="vw">16vw</p>
 </main>
 
 

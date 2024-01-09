@@ -3,5 +3,4 @@
 </footer>
 
 <!-- js -->
-<script src="/assets/js/base.js<?php global $version; echo $version; ?>"></script>
-
+<script src="<?php echo get_template_directory_uri(); ?>/assets/js/base.js<?php global $version; echo $version; ?>"></script>

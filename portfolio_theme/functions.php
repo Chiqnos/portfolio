@@ -13,11 +13,11 @@ function remove_unnecessary_wp_head_info()
 add_action('after_setup_theme', 'remove_unnecessary_wp_head_info');
 
 // WordPressの機能をここで有効化するコードを追加
-function my_custom_theme_setup()
+function initialize_theme_support()
 {
   // サポートする機能を追加
   add_theme_support('post-thumbnails'); // アイキャッチ画像を有効化
   // その他の初期設定や機能追加
 }
 
-add_action('after_setup_theme', 'my_custom_theme_setup');
+add_action('after_setup_theme', 'initialize_theme_support');
