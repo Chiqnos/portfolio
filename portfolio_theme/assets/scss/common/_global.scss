@@ -19,8 +19,8 @@ $opacity: 0.6;
 // $subcol: #00265F;
 
 $basecol: #f4f1ee;
-$sidescol01: #ddd4cc;
-$sidescol02: #526f50;
+$sidecol01: #ddd4cc;
+$sidecol02: #526f50;
 $accentcol: #cabdb1;
 
 // ヘッダー高さ
@@ -29,6 +29,10 @@ $sphdr_h: 77px; //spのとき
 
 // PCインナー
 $pcwin_inr_w: 1200px;
+
+// Windowサイズ
+$pcwin: 1440;
+$spwin: 375;
 
 /*---------- フォント ----------*/
 
@@ -83,7 +87,7 @@ $breakpoints: (
 
 /*---------- mixin ----------*/
 @function cs($size) {
-	@return #{'max(#{calc($size / $pc) * 100}vw, #{$size}px)'};
+	@return #{'max(#{calc($size / $pcwin) * 100}vw, #{$size}px)'};
 
 }
 
@@ -98,6 +102,10 @@ $breakpoints: (
 
 @mixin fs($size: 10) {
 	font-size: calc($size / 10) + rem;
+}
+
+@mixin lh($size, $height) {
+	line-height: calc($height / $size);
 }
 
 @mixin fw($weight) {

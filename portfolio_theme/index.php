@@ -23,7 +23,7 @@ include_once($current_path . '/assets/inc/header.php');
 
 <!-- 現在のページのみ使用するJSはここから下に記述 -->
 
-
+<div class="mask" id="mask"></div>
 </body>
 
 </html>
