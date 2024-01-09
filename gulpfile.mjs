@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import gulp from 'gulp';
-import sassLibrary from 'sass';
+import * as sassLibrary from 'sass';
 import gulpSass from 'gulp-sass';
 import autoprefixer from 'gulp-autoprefixer';
 import cleanCSS from 'gulp-clean-css';
@@ -24,8 +24,11 @@ const compileSass = () => {
       cascade: false
     }))
     .pipe(cleanCSS())
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest('portfolio_theme/assets/css'))
+    .pipe(rename(function (path) {
+      path.basename += '.min'; // Add .min suffix
+      path.dirname = ''; // Ignore all directory structure
+    }))
+    .pipe(gulp.dest('portfolio_theme/assets/css'));
 };
 
 const images = () => {
@@ -36,7 +39,7 @@ const images = () => {
 
 const scripts = () => {
   return gulp.src(['portfolio_theme/assets/js/**/*.js', '!portfolio_theme/assets/js/jquery.min.js']) // jquery.min.jsを除外
-    .pipe(concat('all.js'))
+    .pipe(concat('script.js'))
     .pipe(uglify())
     .pipe(gulp.dest('portfolio_theme/assets/js'))
 };
@@ -50,7 +53,7 @@ const ftpConnection = {
 };
 
 // リモートのパス
-const remoteDestination = '/public_html/chiqnos.com/wp-content/themes/portfolio';
+const remoteDestination = '/public_html/chiqnos.com/wp-content/themes/chiqnos';
 
 const deploy = () => {
   const conn = ftp.create(ftpConnection);
@@ -62,10 +65,9 @@ const deploy = () => {
 
 
 const watchFiles = () => {
-  gulp.watch('portfolio_theme/assets/scss/**/*.scss', gulp.series(compileSass, deploy));
-  gulp.watch('portfolio_theme/assets/img/**/*', gulp.series(images, deploy));
-  gulp.watch('portfolio_theme/assets/js/**/*.js', gulp.series(scripts, deploy));
-  gulp.watch('portfolio_theme/**/*.php', deploy);
+  gulp.watch('portfolio_theme/assets/scss/**/*.scss', compileSass);
+  gulp.watch('portfolio_theme/assets/img/**/*', images);
+  gulp.watch(['portfolio_theme/assets/js/**/*.js', '!portfolio_theme/assets/js/script.js'], scripts);
 };
 
 // 統合されたwatchタスク
