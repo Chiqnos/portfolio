@@ -13,9 +13,17 @@ include_once($current_path . '/assets/inc/header.php');
 
 <!-- コンテンツここから -->
 <main class="mainContents page_<?php echo $page_slig; ?>">
-  <p class="px">16px</p>
-  <p class="rem">16rem</p>
-  <p class="vw">16vw</p>
+  <div class="jumbotron" style="background-image: url('/assets/img/elements/jumbotron-bg.jpg');">
+    <div class="jumbotron__inner">
+      <p class="jumbotron__title">
+        貴社のビジネスに適切な戦略をご提案し
+        <br class="only-lg">
+        「成果」に貢献いたします。
+      </p>
+    </div>
+    <!-- /.jumbotron__inner -->
+  </div>
+  <!-- /.jumbotron -->
 </main>
 
 

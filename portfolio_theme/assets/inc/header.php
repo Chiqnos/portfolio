@@ -116,28 +116,29 @@ $version = '?v=' . date("Ymd-His");
         </button>
         <p class="hamburger_menu_text">Menu</p>
       </div>
-    </div>
-    <div class="header_nav">
-      <nav class="nav_menu" aria-label="サイト内メニュー">
-        <ul class="menu_list">
-          <li class="menu_list_item">
-            <a class="menu_list_item_link" href="#service">Service</a>
-          </li>
-          <li class="menu_list_item">
-            <a class="menu_list_item_link" href="#flow">Flow</a>
-          </li>
-          <li class="menu_list_item">
-            <a class="menu_list_item_link" href="#works">Works</a>
-          </li>
-          <li class="menu_list_item">
-            <a class="menu_list_item_link" href="#about">About</a>
-          </li>
-        </ul>
-      </nav>
-      <p class="contact">
-        <a class="contact_link" href="#contact">
-          お問い合わせ・ご相談
-        </a>
-      </p>
+
+      <div class="header_nav">
+        <nav class="nav_menu" aria-label="サイト内メニュー">
+          <ul class="menu_list">
+            <li class="menu_list_item">
+              <a class="menu_list_item_link" href="#service">Service</a>
+            </li>
+            <li class="menu_list_item">
+              <a class="menu_list_item_link" href="#flow">Flow</a>
+            </li>
+            <li class="menu_list_item">
+              <a class="menu_list_item_link" href="#works">Works</a>
+            </li>
+            <li class="menu_list_item">
+              <a class="menu_list_item_link" href="#about">About</a>
+            </li>
+          </ul>
+        </nav>
+        <p class="contact">
+          <a class="contact_link" href="#contact">
+            お問い合わせ・ご相談
+          </a>
+        </p>
+      </div>
     </div>
   </header>
