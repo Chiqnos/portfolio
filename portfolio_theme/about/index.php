@@ -12,7 +12,7 @@ CSSDOC; */
 
 $current_path = dirname(__FILE__);
 
-include_once($current_path . '/../assets/inc/header.php');
+include_once($current_path . '/../dist/inc/header.php');
 ?>
 
 <!-- コンテンツここから -->
@@ -21,7 +21,7 @@ include_once($current_path . '/../assets/inc/header.php');
 </main>
 
 
-<?php include_once($current_path . '/../assets/inc/footer.php'); ?>
+<?php include_once($current_path . '/../dist/inc/footer.php'); ?>
 
 <!-- 現在のページのみ使用するJSはここから下に記述 -->
 

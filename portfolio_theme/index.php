@@ -8,12 +8,12 @@ CSSDOC; */
 
 $current_path = dirname(__FILE__);
 
-include_once($current_path . '/assets/inc/header.php');
+include_once($current_path . '/dist/inc/header.php');
 ?>
 
 <!-- コンテンツここから -->
 <main class="mainContents page_<?php echo $page_slig; ?>">
-  <div class="jumbotron" style="background-image: url('/assets/img/elements/jumbotron-bg.jpg');">
+  <div class="jumbotron" style="background-image: url('/dist/img/elements/jumbotron-bg.jpg');">
     <div class="jumbotron__inner">
       <p class="jumbotron__title">
         貴社のビジネスに適切な戦略をご提案し
@@ -27,7 +27,7 @@ include_once($current_path . '/assets/inc/header.php');
 </main>
 
 
-<?php include_once($current_path . '/assets/inc/footer.php'); ?>
+<?php include_once($current_path . '/dist/inc/footer.php'); ?>
 
 <!-- 現在のページのみ使用するJSはここから下に記述 -->
 

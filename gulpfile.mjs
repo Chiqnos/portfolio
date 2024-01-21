@@ -18,7 +18,7 @@ const ftpPassword = process.env.FTP_PASSWORD;
 const sass = gulpSass(sassLibrary);
 
 const compileSass = () => {
-  return gulp.src(['portfolio_theme/assets/scss/**/*.scss', '!portfolio_theme/assets/scss/**/_*.scss'])
+  return gulp.src(['portfolio_theme/src/scss/**/*.scss', '!portfolio_theme/src/scss/**/_*.scss'])
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({
       cascade: false
@@ -28,20 +28,20 @@ const compileSass = () => {
       path.basename += '.min'; // Add .min suffix
       path.dirname = ''; // Ignore all directory structure
     }))
-    .pipe(gulp.dest('portfolio_theme/assets/css'));
+    .pipe(gulp.dest('portfolio_theme/dist/css'));
 };
 
 const images = () => {
-  return gulp.src('portfolio_theme/assets/img/**/*')
+  return gulp.src('portfolio_theme/src/img/**/*')
     .pipe(imagemin())
-    .pipe(gulp.dest('portfolio_theme/assets/img'));
+    .pipe(gulp.dest('portfolio_theme/dist/img'));
 };
 
 const scripts = () => {
-  return gulp.src(['portfolio_theme/assets/js/**/*.js', '!portfolio_theme/assets/js/jquery.min.js']) // jquery.min.jsを除外
+  return gulp.src(['portfolio_theme/src/js/**/*.js'])
     .pipe(concat('script.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('portfolio_theme/assets/js'))
+    .pipe(gulp.dest('portfolio_theme/dist/js'))
 };
 
 // FTP接続設定
@@ -58,16 +58,16 @@ const remoteDestination = '/public_html/chiqnos.com/wp-content/themes/chiqnos';
 const deploy = () => {
   const conn = ftp.create(ftpConnection);
 
-  return gulp.src('./portfolio_theme/**', { base: './portfolio_theme', buffer: false })
+  return gulp.src(['./portfolio_theme/**', '!./portfolio_theme/src/**'], { base: './portfolio_theme', buffer: false })
     .pipe(conn.newer(remoteDestination)) // サーバー上のファイルより新しいものだけアップロード
     .pipe(conn.dest(remoteDestination));
 };
 
 
 const watchFiles = () => {
-  gulp.watch('portfolio_theme/assets/scss/**/*.scss', compileSass);
-  gulp.watch('portfolio_theme/assets/img/**/*', images);
-  gulp.watch(['portfolio_theme/assets/js/**/*.js', '!portfolio_theme/assets/js/script.js'], scripts);
+  gulp.watch('portfolio_theme/src/scss/**/*.scss', compileSass);
+  gulp.watch('portfolio_theme/src/img/**/*', images);
+  gulp.watch('portfolio_theme/src/js/**/*.js', scripts);
 };
 
 // 統合されたwatchタスク
